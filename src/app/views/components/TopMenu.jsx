@@ -14,9 +14,6 @@ const TopMenu = ({userName}) => {
             title="Личный кабинет"
             extra={
                 [
-                    <Button onClick={handleAddContact} key="1" type="primary">
-                        Добавить контакт
-                    </Button>,
                     <span>
                         <UserOutlined/>
                         {userName}

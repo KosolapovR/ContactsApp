@@ -20,14 +20,16 @@ const deleteContactItem = (payload) => ({
     payload
 });
 
-const getContactList = (payload) => ({
-    type: GET_CONTACT_LIST,
-    payload
-});
+const setFetchingData = (payload) => {
+    return {
+        type: GET_CONTACT_LIST,
+        payload
+    }
+};
 
 export {
     getContactItem,
-    getContactList,
+    setFetchingData,
     addContactItem,
     updateContactItem,
     deleteContactItem

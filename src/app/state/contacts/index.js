@@ -1,8 +1,10 @@
 import {default as contacts} from "./reducers";
-import {getUser} from "./operations";
+import {getContactList, updateContact, addContact} from "./operations";
 
 export {
-    getUser
+    getContactList,
+    addContact,
+    updateContact
 }
 
 export default contacts;

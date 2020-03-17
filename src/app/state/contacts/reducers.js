@@ -8,7 +8,7 @@ const contactsReducer = (state = initialState, action) => {
             return {...state}
         }
         case ADD_CONTACT_ITEM: {
-            return {...state}
+            return {...state, contacts: [...state.contacts, action.payload]}
         }
         case UPDATE_CONTACT_ITEM: {
             return {...state}
@@ -17,7 +17,7 @@ const contactsReducer = (state = initialState, action) => {
             return {...state}
         }
         case GET_CONTACT_LIST: {
-            return {...state}
+            return {...state, contacts: action.payload}
         }
         default: {
             return state

@@ -1,7 +1,7 @@
 import {GET_USER, SET_USER} from "./types";
 
 
-const initialState = {user: {isAuth: true, name: 'Roman'}};
+const initialState = {user: {isAuth: true, id: 1, name: 'Roman'}};
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
