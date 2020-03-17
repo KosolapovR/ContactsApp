@@ -1,0 +1,17 @@
+.site-layout{
+    min-height: 100vh;
+}
+
+.site-layout-content {
+    background: #fff;
+    padding: 24px;
+    min-height: 280px;
+}
+
+.site-layout-header {
+    background: deepskyblue;
+}
+
+.site-layout-header-title{
+    margin-left: 10px;
+}
