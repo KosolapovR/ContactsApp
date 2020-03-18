@@ -29,33 +29,33 @@ const Login = ({user, authentication}) => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your Username!',
+                        message: 'Пожалуйста введите Ваше имя!',
                     },
                 ]}
             >
-                <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Username"/>
+                <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Имя"/>
             </Form.Item>
             <Form.Item
                 name="password"
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your Password!',
+                        message: 'Пожалуйста введите Ваш пароль!',
                     },
                 ]}
             >
                 <Input
                     prefix={<LockOutlined className="site-form-item-icon"/>}
                     type="password"
-                    placeholder="Password"
+                    placeholder="Пароль"
                 />
             </Form.Item>
 
             <Form.Item>
                 <Button type="primary" htmlType="submit" className="login-form-button">
-                    Log in
+                    Войти
                 </Button>
-                Or <a href="">register now!</a>
+                Или <a href="">зарегистрируйтесь!</a>
             </Form.Item>
         </Form>
     );

@@ -1,29 +1,33 @@
 import React from 'react';
-import {PageHeader, Button} from 'antd';
-import {UserOutlined} from "@ant-design/icons";
+import {PageHeader, Button, Popover, Tooltip, Row, Col} from 'antd';
 import '../pages/home.css';
+import LogoutOutlined from "@ant-design/icons/lib/icons/LogoutOutlined";
+import {connect} from "react-redux";
+import {logout} from "../../state/auth";
 
-const TopMenu = ({userName}) => {
+const TopMenu = ({userName, logout}) => {
 
     const handleAddContact = () => {
 
     }
 
     return (
-        < PageHeader
-            title="Личный кабинет"
-            extra={
-                [
-                    <span>
-                        <UserOutlined/>
+        < Row justify="space-beetwen">
+            <Col flex="auto"><h1>Личный кабинет</h1></Col>
+            <Col flex="100px" style={{textAlign: "right"}}>
+                    <span style={{marginRight: '10px'}}>
                         {userName}
                     </span>
+                <Tooltip title="Выход">
+                    <LogoutOutlined onClick={() => {
+                        logout()
+                    }}/>
+                </Tooltip>
 
-                ]
-            }
-        >
-        </PageHeader>
+            </Col>
+        </Row>
     );
 }
 
-export default TopMenu;
+
+export default connect(null, {logout})(TopMenu);

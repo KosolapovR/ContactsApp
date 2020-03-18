@@ -37,4 +37,11 @@ const checkSession = () => {
     }
 };
 
-export {setUser, authentication, checkSession};
+const logout = () => {
+    return (dispatch) => {
+       sessionStorage.clear();
+       dispatch(getSession([{}]));
+    }
+};
+
+export {setUser, authentication, checkSession, logout};

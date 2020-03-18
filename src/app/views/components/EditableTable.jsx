@@ -4,7 +4,8 @@ import {Table, Input, Popconfirm, Button} from "antd";
 import Highlighter from "react-highlight-words";
 import {SearchOutlined} from "@ant-design/icons";
 import {connect} from "react-redux";
-import {getContactList, updateContact} from "../../state/contacts";
+import {deleteContact, getContactList, updateContact} from "../../state/contacts";
+import UserAvatar from "./UserAvatar";
 
 
 const EditableCell = ({editable, value, onChange}) => (
@@ -31,28 +32,36 @@ class EditableTable extends React.Component {
         super(props);
         this.columns = [
             {
-                title: "name",
+                dataIndex: "avatar",
+                width: "10%",
+                render: (text, record) => this.renderColumns(text, record, "ava")
+            },
+            {
+                title: "Имя",
                 dataIndex: "name",
-                width: "25%",
+                width: "15%",
                 ...this.getColumnSearchProps("name"),
                 render: (text, record) => this.renderColumns(text, record, "name")
             },
             {
-                title: "age",
+                title: "Телефон",
+                dataIndex: "phone",
+                width: "20%",
+                render: (text, record) => this.renderColumns(text, record, "phone")
+            },
+            {
+                title: "Возраст",
                 dataIndex: "age",
-                width: "15%",
-                ...this.getColumnSearchProps("age"),
+                width: "5%",
                 render: (text, record) => this.renderColumns(text, record, "age")
             },
             {
-                title: "address",
+                title: "Адрес",
                 dataIndex: "address",
-                width: "40%",
-                ...this.getColumnSearchProps("address"),
+                width: "25%",
                 render: (text, record) => this.renderColumns(text, record, "address")
             },
             {
-                title: "operation",
                 dataIndex: "operation",
                 render: (text, record) => {
                     ;
@@ -62,19 +71,18 @@ class EditableTable extends React.Component {
                             <div className="editable-row-operations">
                                 {editable ? (
                                     <span>
-                    <div onClick={() => this.save(record.id)}>Save</div>
-                    <Popconfirm
-                        title="Sure to cancel?"
-                        onConfirm={() => this.cancel(record.id)}
-                    >
-                      <div>Cancel</div>
-                    </Popconfirm>
+                    <a onClick={() => this.save(record.id)} style={{marginRight: '5px'}}>Сохранить</a>
+                      <a onClick={() => this.cancel(record.id)}>Отмена</a>
                   </span>
                                 ) : (
-                                    <div onClick={() => this.edit(record.id)}>Edit</div>
+                                    <a onClick={() => this.edit(record.id)}>Редактировать</a>
                                 )}
                             </div>
-                            <div className="editable-row-operations">Delete</div>
+                            <Popconfirm title="Уверены?" onConfirm={() => {
+                                this.handleDelete(record.id)
+                            }}>
+                                <a className="editable-row-operations">Удалить</a>
+                            </Popconfirm>
                         </>
                     );
                 }
@@ -100,7 +108,7 @@ class EditableTable extends React.Component {
                     ref={node => {
                         this.searchInput = node;
                     }}
-                    placeholder={`Search ${dataIndex}`}
+                    placeholder={`Поиск по имени`}
                     value={selectedKeys[0]}
                     onChange={e =>
                         setSelectedKeys(e.target.value ? [e.target.value] : [])
@@ -168,13 +176,20 @@ class EditableTable extends React.Component {
     };
 
     renderColumns(text, record, column) {
-        return (
-            <EditableCell
-                editable={record.editable}
-                value={text}
-                onChange={value => this.handleChange(value, record.id, column)}
-            />
-        );
+        if (column === 'ava') {
+            return <UserAvatar contacts={record}/>
+        } else {
+            return (
+                <EditableCell
+                    editable={record.editable}
+                    value={text}
+                    imgPath={record.img}
+                    column
+                    onChange={value => this.handleChange(value, record.id, column)}
+                />
+            );
+        }
+
     }
 
     handleChange(value, id, column) {
@@ -184,6 +199,10 @@ class EditableTable extends React.Component {
             target[column] = value;
             this.setState({data: newData});
         }
+    }
+
+    handleDelete(id) {
+        this.props.deleteContact(this.props.user, this.props.contacts, id);
     }
 
     edit(id) {
@@ -200,7 +219,7 @@ class EditableTable extends React.Component {
         const target = newData.filter(item => id === item.id)[0];
         if (target) {
             delete target.editable;
-            this.props.updateContact(this.props.user.contacts, newData);
+            this.props.updateContact(this.props.user, newData);
             this.setState({data: newData});
             this.cacheData = newData.map(item => ({...item}));
         }
@@ -218,7 +237,7 @@ class EditableTable extends React.Component {
 
     render() {
         return (
-            <Table bordered dataSource={this.props.contacts} columns={this.columns}/>
+            <Table bordered size="small" dataSource={this.props.contacts} columns={this.columns}/>
         )
     }
 }
@@ -228,4 +247,4 @@ const mapDispatchToProps = state => ({
     contacts: state.contacts.contacts
 });
 
-export default connect(mapDispatchToProps, {getContactList, updateContact})(EditableTable);
+export default connect(mapDispatchToProps, {getContactList, updateContact, deleteContact})(EditableTable);

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Modal, Button, Form, Input} from 'antd';
 import {connect} from "react-redux";
 import {addContact} from "../../state/contacts";
+import InputNumber from "antd/es/input-number";
 
 const layout = {
     labelCol: {
@@ -44,7 +45,7 @@ const ModalAddContact = ({user, addContact, contacts}) => {
 
     return (
         <div>
-            <Button type="primary" onClick={showModal}>
+            <Button type="primary" style={{marginBottom: '10px'}} onClick={showModal}>
                 Добавить контакт
             </Button>
             <Modal
@@ -55,8 +56,11 @@ const ModalAddContact = ({user, addContact, contacts}) => {
                         .validateFields()
                         .then(values => {
                             let newContacts = [...contacts, values];
+                            debugger;
                             addContact(user, newContacts);
-                            setVisible(false)
+                            setVisible(false);
+                            form.resetFields();
+
                         })
                         .catch(info => {
                             console.log('Validate Failed:', info);
@@ -77,6 +81,17 @@ const ModalAddContact = ({user, addContact, contacts}) => {
                         <Input/>
                     </Form.Item>
                     <Form.Item
+                        name="phone"
+                        label="Телефон"
+                        rules={[
+                            {
+                                required: false,
+                            },
+                        ]}
+                    >
+                        <Input/>
+                    </Form.Item>
+                    <Form.Item
                         name="age"
                         label="Возраст"
                         rules={[
@@ -85,7 +100,7 @@ const ModalAddContact = ({user, addContact, contacts}) => {
                             },
                         ]}
                     >
-                        <Input/>
+                        <InputNumber/>
                     </Form.Item>
                     <Form.Item
                         name="address"
@@ -102,7 +117,7 @@ const ModalAddContact = ({user, addContact, contacts}) => {
             </Modal>
         </div>
     );
-}
+};
 
 const mapDispatchToProps = state => ({
     user: state.auth.user,
