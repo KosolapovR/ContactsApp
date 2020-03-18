@@ -2,8 +2,12 @@ import React from 'react';
 import Login from "./app/views/pages/Login";
 import Home from "./app/views/pages/Home";
 import {Route, Switch} from "react-router";
+import {connect} from "react-redux";
+import {checkSession} from './app/state/auth'
 
-function App() {
+function App({checkSession}) {
+
+    checkSession();
 
     return (
         <div className="App">
@@ -19,4 +23,4 @@ function App() {
     );
 }
 
-export default App;
+export default connect(null, {checkSession})(App);

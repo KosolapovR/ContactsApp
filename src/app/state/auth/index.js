@@ -1,8 +1,9 @@
 import {default as auth} from "./reducers";
-import {authentication} from "./operations";
+import {authentication, checkSession} from "./operations";
 
 export {
-    authentication
+    authentication,
+    checkSession
 }
 
 export default auth;

@@ -1,4 +1,5 @@
 import {
+    GET_SESSION,
     GET_USER, SET_USER,
 } from "./types";
 
@@ -12,7 +13,15 @@ const setUser = (payload) => ({
     payload
 });
 
+const getSession = (payload) => {
+    return {
+        type: GET_SESSION,
+        payload
+    }
+};
+
 export {
     getUser,
-    setUser
+    setUser,
+    getSession
 }
