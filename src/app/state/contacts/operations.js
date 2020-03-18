@@ -1,10 +1,10 @@
 import axios from "axios";
 import {setFetchingData} from "./actions";
 
-const getContactList = (userId) => {
+const getContactList = (user) => {
     return (dispatch) => {
         let promise = axios.get(
-            `http://localhost:3001/users/${userId}`
+            `http://localhost:3001/users/${user.id}`
         );
 
         promise
@@ -16,7 +16,7 @@ const getContactList = (userId) => {
     }
 };
 
-const updateContact = (userId, contacts) => {
+const updateContact = (user, contacts) => {
     return (dispatch) => {
         const config = {headers: {'Content-Type': 'application/json'}};
 
@@ -28,9 +28,11 @@ const updateContact = (userId, contacts) => {
         }));
 
         const content = {
+            "name": user.name,
+            "password": user.password,
             "contacts": newContacts
         };
-        let promise = axios.patch(`http://localhost:3001/users/${userId}`, content, config);
+        let promise = axios.patch(`http://localhost:3001/users/${user.id}`, content, config);
 
         promise
             .then(
@@ -41,7 +43,7 @@ const updateContact = (userId, contacts) => {
     }
 };
 
-const addContact = (userId, contacts) => {
+const addContact = (user, contacts) => {
     return (dispatch) => {
         const config = {headers: {'Content-Type': 'application/json'}};
 
@@ -52,9 +54,11 @@ const addContact = (userId, contacts) => {
         }));
 
         const content = {
+            "name": user.name,
+            "password": user.password,
             "contacts": newContacts
         };
-        let promise = axios.put(`http://localhost:3001/users/${userId}`, content, config);
+        let promise = axios.put(`http://localhost:3001/users/${user.id}`, content, config);
 
         promise
             .then(

@@ -84,7 +84,7 @@ class EditableTable extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getContactList(this.props.userId);
+        this.props.getContactList(this.props.user);
 
     }
 
@@ -200,7 +200,7 @@ class EditableTable extends React.Component {
         const target = newData.filter(item => id === item.id)[0];
         if (target) {
             delete target.editable;
-            this.props.updateContact(this.props.userId, newData);
+            this.props.updateContact(this.props.user.contacts, newData);
             this.setState({data: newData});
             this.cacheData = newData.map(item => ({...item}));
         }
@@ -224,7 +224,7 @@ class EditableTable extends React.Component {
 }
 
 const mapDispatchToProps = state => ({
-    userId: state.auth.user.id,
+    user: state.auth.user,
     contacts: state.contacts.contacts
 });
 

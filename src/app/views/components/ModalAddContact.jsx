@@ -17,7 +17,7 @@ const tailLayout = {
         span: 16,
     },
 };
-const ModalAddContact = ({userId, addContact, contacts}) => {
+const ModalAddContact = ({user, addContact, contacts}) => {
     const [visible, setVisible] = useState(false);
 
     const showModal = () => {
@@ -55,7 +55,7 @@ const ModalAddContact = ({userId, addContact, contacts}) => {
                         .validateFields()
                         .then(values => {
                             let newContacts = [...contacts, values];
-                            addContact(userId, newContacts);
+                            addContact(user, newContacts);
                             setVisible(false)
                         })
                         .catch(info => {
@@ -105,7 +105,7 @@ const ModalAddContact = ({userId, addContact, contacts}) => {
 }
 
 const mapDispatchToProps = state => ({
-    userId: state.auth.user.id,
+    user: state.auth.user,
     contacts: state.contacts.contacts
 });
 

@@ -3,14 +3,12 @@ import {connect} from "react-redux";
 import {Redirect} from "react-router";
 import 'antd/dist/antd.css';
 import './home.css';
-import {Button, Layout} from "antd";
-import {UserOutlined} from '@ant-design/icons';
-import {Typography} from 'antd';
+import {Layout} from "antd";
 import TopMenu from "../components/TopMenu";
 import EditableTable from "../components/EditableTable";
 import ModalAddContact from "../components/ModalAddContact";
 
-const {Text} = Typography;
+
 const {Header, Footer, Content} = Layout;
 
 
