@@ -9,8 +9,7 @@ import EditableTable from "../components/EditableTable";
 import ModalAddContact from "../components/ModalAddContact";
 
 
-const {Header, Footer, Content} = Layout;
-
+const {Header, Content} = Layout;
 
 const Home = ({user}) => (
     <>
@@ -30,7 +29,6 @@ const Home = ({user}) => (
                         <EditableTable/>
                     </Col>
                 </Row>
-
             </Content>
         </Layout>
     </>

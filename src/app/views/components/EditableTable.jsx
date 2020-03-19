@@ -64,7 +64,6 @@ class EditableTable extends React.Component {
             {
                 dataIndex: "operation",
                 render: (text, record) => {
-                    ;
                     const {editable} = record;
                     return (
                         <>
@@ -93,7 +92,6 @@ class EditableTable extends React.Component {
 
     componentDidMount() {
         this.props.getContactList(this.props.user);
-
     }
 
     getColumnSearchProps = dataIndex => ({
@@ -125,14 +123,14 @@ class EditableTable extends React.Component {
                     size="small"
                     style={{width: 90, marginRight: 8}}
                 >
-                    Search
+                    Искать
                 </Button>
                 <Button
                     onClick={() => this.handleReset(clearFilters)}
                     size="small"
                     style={{width: 90}}
                 >
-                    Reset
+                    Сбросить
                 </Button>
             </div>
         ),

@@ -12,21 +12,12 @@ const layout = {
         span: 16,
     },
 };
-const tailLayout = {
-    wrapperCol: {
-        offset: 8,
-        span: 16,
-    },
-};
+
 const ModalAddContact = ({user, addContact, contacts}) => {
     const [visible, setVisible] = useState(false);
 
     const showModal = () => {
         setVisible(true);
-    };
-
-    const handleOk = form => {
-
     };
 
     const handleCancel = e => {
@@ -39,10 +30,6 @@ const ModalAddContact = ({user, addContact, contacts}) => {
         console.log(values);
     };
 
-    const onReset = () => {
-        form.resetFields();
-    };
-
     return (
         <div>
             <Button type="primary" style={{marginBottom: '10px'}} onClick={showModal}>
@@ -51,7 +38,7 @@ const ModalAddContact = ({user, addContact, contacts}) => {
             <Modal
                 title="Добавление контакта"
                 visible={visible}
-                onOk={()=> {
+                onOk={() => {
                     form
                         .validateFields()
                         .then(values => {
@@ -100,7 +87,7 @@ const ModalAddContact = ({user, addContact, contacts}) => {
                             },
                         ]}
                     >
-                        <InputNumber/>
+                        <InputNumber min={1} maxLength={2}/>
                     </Form.Item>
                     <Form.Item
                         name="address"

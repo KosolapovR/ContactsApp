@@ -1,24 +1,21 @@
-import React, {useState} from "react";
+import React from "react";
 import "antd/dist/antd.css";
 import {Avatar, Col, Row} from "antd";
 
 const UserAvatar = ({contacts}) => {
     let userName;
-    if(contacts.name){
+    if (contacts.name) {
         userName = contacts.name[0];
-    }else{
+    } else {
         userName = '?';
     }
-
-    const url = contacts.img ? contacts.img : '';
-
 
     const d2h = (d) => {
         return d.toString(16);
     };
 
     const stringToHex = (tmp) => {
-        var str = '',
+        let str = '',
             i = 0,
             tmp_len = tmp.length,
             c;
@@ -29,8 +26,6 @@ const UserAvatar = ({contacts}) => {
         }
         return "#" + str;
     };
-
-    console.log(stringToHex(userName));
 
     return (
         <Row justify="center" style={{width: '100%'}}>

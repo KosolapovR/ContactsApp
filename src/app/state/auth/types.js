@@ -1,9 +1,11 @@
 const SET_USER = 'auth/SET_USER';
 const GET_USER = 'auth/GET_USER';
 const GET_SESSION = 'auth/GET_SESSION';
+const INVALID_CREDENTIALS = 'auth/INVALID_CREDENTIALS';
 
 export {
     SET_USER,
     GET_USER,
-    GET_SESSION
+    GET_SESSION,
+    INVALID_CREDENTIALS
 }

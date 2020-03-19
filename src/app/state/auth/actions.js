@@ -1,12 +1,8 @@
 import {
     GET_SESSION,
-    GET_USER, SET_USER,
+    INVALID_CREDENTIALS,
+    SET_USER,
 } from "./types";
-
-const getUser = (payload) => ({
-    type: GET_USER,
-    payload
-});
 
 const setUser = (payload) => ({
     type: SET_USER,
@@ -20,8 +16,12 @@ const getSession = (payload) => {
     }
 };
 
+const invalidCredentials = () => ({
+    type: INVALID_CREDENTIALS,
+});
+
 export {
-    getUser,
     setUser,
-    getSession
+    getSession,
+    invalidCredentials
 }

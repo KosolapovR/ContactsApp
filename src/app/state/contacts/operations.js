@@ -50,9 +50,9 @@ const addContact = (user, contacts) => {
 
         const newContacts = contacts.map((contact, index) => {
                 if (!contact.id) {
-                    if(index < 1){
+                    if (index < 1) {
                         contact.id = 0
-                    }else{
+                    } else {
                         contact.id = contacts[index - 1].id + 1;
                     }
                 }

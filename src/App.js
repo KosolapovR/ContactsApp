@@ -4,6 +4,7 @@ import Home from "./app/views/pages/Home";
 import {Route, Switch} from "react-router";
 import {connect} from "react-redux";
 import {checkSession} from './app/state/auth'
+import Registration from "./app/views/pages/Registration";
 
 function App({checkSession}) {
 
@@ -14,6 +15,9 @@ function App({checkSession}) {
             <Switch>
                 <Route exact path="/login">
                     <Login/>
+                </Route>
+                <Route exact path="/registration">
+                    <Registration/>
                 </Route>
                 <Route path="/">
                     <Home/>
