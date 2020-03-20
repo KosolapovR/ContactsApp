@@ -26,10 +26,6 @@ const ModalAddContact = ({user, addContact, contacts}) => {
 
     const [form] = Form.useForm();
 
-    const onFinish = values => {
-        console.log(values);
-    };
-
     return (
         <div>
             <Button type="primary" style={{marginBottom: '10px'}} onClick={showModal}>
@@ -43,7 +39,6 @@ const ModalAddContact = ({user, addContact, contacts}) => {
                         .validateFields()
                         .then(values => {
                             let newContacts = [...contacts, values];
-                            debugger;
                             addContact(user, newContacts);
                             setVisible(false);
                             form.resetFields();
