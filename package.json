@@ -41,7 +41,7 @@
     ]
   },
   "devDependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "react-highlight-words": "^0.16.0"
   }
 }
